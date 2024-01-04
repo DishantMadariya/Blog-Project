@@ -2,7 +2,14 @@ const express = require('express');
 const port = 8005;
 var app = express();
 const path = require('path');
-const db = require('./config/mongoose');
+
+// const db = require('./config/mongoose');
+const mongoose = require('mongoose');
+const connectionString = 'mongodb+srv://adishantPatel:DishArchie1630@dishant.9pzgbuj.mongodb.net/Admin_panel1';
+mongoose.connect(connectionString, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    }).then(() => console.log('Database connected.')).catch(err => console.log(err));
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passportStrategy');
