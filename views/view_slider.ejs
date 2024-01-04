@@ -1,0 +1,143 @@
+<%- include('header')%>
+
+    <!-- MAIN CONTENT-->
+    <div class="main-content">
+        <div class="section__content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- DATA TABLE -->
+                        <h3 class="title-5 m-b-35">slider data table</h3>
+                        <div class="table-data__tool">
+                            <div class="table-data__tool-left">
+                                <div class="rs-select2--light rs-select2--md">
+                                    <select class="js-select2" name="property">
+                                        <option selected="selected">All Properties</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                                <div class="rs-select2--light rs-select2--sm">
+                                    <select class="js-select2" name="time">
+                                        <option selected="selected">Today</option>
+                                        <option value="">3 Days</option>
+                                        <option value="">1 Week</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                                <button class="au-btn-filter">
+                                    <i class="zmdi zmdi-filter-list"></i>filters</button>
+                            </div>
+                            <div class="table-data__tool-right">
+                                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                    <i class="zmdi zmdi-plus"></i>add item</button>
+                                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                    <select class="js-select2" name="type">
+                                        <option selected="selected">Export</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive table-responsive-data2">
+                            <table class="table table-data2">
+                                <form>
+                                    <input type="text" style="padding: 5px 12px; border-radius: 3px; margin-right: 13px; color: #808080;" value="<%=searchValue%>" name="search">
+                                    <input type="submit" style="padding: 5px 12px; border-radius: 3px; margin-right: 13px; color: #808080;"  value="search">
+                                </form>
+                                <form action="/admin/slider/deletAll" method="post">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="au-checkbox">
+                                                    <input type="checkbox" id="checkAll">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete All Selected Data" style="transform: translate(23px, -5px);"><i class="zmdi zmdi-delete"></i></button>
+                                                    <span class="au-checkmark"></span>
+                                                </label>
+                                            </th>
+                                            <th>Title</th>
+                                            <th>Link</th>
+                                            <th>Discription</th>
+                                            <th>Image</th>
+                                            <th>status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%if(sliderdata != ''){%>
+                                            <%for(var ad of sliderdata){%>
+                                                <tr class="tr-shadow">
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox" class="checkBoxClass" name="deletAll[]" value="<%=ad.id%>">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td><%=ad.title%></td>
+                                                    <td><%=ad.link%></td>
+                                                    <td><%=ad.discription%></td>
+                                                    <td>
+                                                        <img src="<%=ad.sliderImage%>" height="70px" width="70">
+                                                    </td>
+                                                    <td>
+                                                        <%if(ad.isActive){%>
+                                                            <a href="/admin/slider/isactive/<%=ad.id%>" class="alert-success px-1 text-grey">Active</a>
+                                                        <%} else{%>
+                                                            <a href="/admin/slider/deactive/<%=ad.id%>" class="alert-danger px-1 text-grey">Deactive</a>
+                                                        <%}%> 
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <a href="/admin/slider/updateData/<%=ad.id%>" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                <i class="zmdi zmdi-edit"></i>
+                                                            </a>
+                                                            <a href="/admin/slider/deletData/<%=ad.id%>" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </a>
+                                                            <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                                <i class="zmdi zmdi-more"></i>
+                                                            </button> -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <%}%>
+                                        <%} else {%>
+                                            <tr>
+                                                <td colspan="10" >No Record Found</td>
+                                            </tr>
+                                        <%}%>
+                                        <tr class="spacer"></tr>
+                                    </tbody>
+                                </form>
+                            </table>
+                            <div style="padding: 10px; background: #ffffff9b; border-radius: 3px; text-align: center;">
+                                <%for (var i=0; i<totaldocument; i++){%>
+                                    <a href="?page=<%=i%>&search=<%=searchValue%>"><%=i+1%></a>
+                                <%}%>
+                            </div>
+                            <div style="margin-top: 7px; padding: 10px; background: #ffffff9b; border-radius: 3px; text-align: center;">
+                                <% var prevPage = parseInt(currentPage)-1%>
+                                <% if(prevPage>=0){%>
+                                    <a href="?page=<%=prevPage%>">Prev</a>
+                                <%}%>
+                                <a href="?page=<%=currentPage%>&search=<%=searchValue%>" style="color:#808080; width: 20px; height: 25px; background-color:white; border: black solid 1px;"><%=parseInt(page)+1%></a>
+                                <% var nextPage = parseInt(currentPage)+1%>
+                                <% if (totaldocument>nextPage){%>
+                                    <a href="?page=<%=nextPage%>">Next</a>
+                                <%}%>
+                            </div>
+                        </div>
+                        <!-- END DATA TABLE -->
+                    </div>
+                </div>
+<%- include('footer')%>
+<script>
+    $(document).ready(function (){
+        $('#checkAll').click(function (){
+            $('.checkBoxClass').attr('checked',this.checked);
+        });
+    });
+</script>

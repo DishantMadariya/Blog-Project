@@ -1,0 +1,14 @@
+const express = require('express');
+const routs = express.Router();
+const passport = require('passport');
+const Post = require('../models/Post');
+const postcontroller = require('../controllers/postcontroller');
+routs.get('/add_post',passport.checkAthuntication,postcontroller.AddPost);
+routs.post('/insertPostData',Post.uploadImage,passport.checkAthuntication,postcontroller.PostData);
+routs.get('/view_post',passport.checkAthuntication,postcontroller.viewPost);
+routs.get('/isactive/:id',passport.checkAthuntication,postcontroller.isactive);
+routs.get('/deactive/:id',passport.checkAthuntication,postcontroller.deactive);
+routs.get('/deletData/:id',passport.checkAthuntication,postcontroller.deletPostData);
+routs.get('/updateData/:id',passport.checkAthuntication,postcontroller.updatePostData);
+routs.post('/editPostData',passport.checkAthuntication,Post.uploadImage,postcontroller.editPostData);
+module.exports = routs;

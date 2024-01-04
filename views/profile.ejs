@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+        .profile-container {
+            max-width: 350px;
+            margin: 20px auto;
+            background-color: lightskyblue;;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-picture {
+            text-align: center;
+        }
+
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid whitesmoke;
+            box-shadow: 1px 1px 8px 2px aliceblue;
+            transition: all 0.3s linear;
+        }
+        .profile-picture img:hover{
+            transform: scale(1.1);
+        }
+        .profile-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+        }
+
+        .profile-info p {
+            color: #777;
+        }
+
+        .profile-details {
+            margin-top: 20px;
+        }
+
+        .profile-details p {
+            margin: 0;
+            padding: 10px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0074D9;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transform: translateX(115px);
+            margin-top: 10px;
+        }
+
+        /* Hover effect */
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><%=locals.user.name%> Profile</h1>
+    </header>
+    <div class="profile-container">
+        <div class="profile-picture">
+            <img src="<%=locals.user.adminImage%>" alt="User Profile Picture">
+        </div>
+        <div class="profile-info">
+            <h2><%=locals.user.name%></h2>
+        </div>
+        <div class="profile-details">
+            <p><strong>Email:</strong> <%=locals.user.email%></p>
+            <p><strong>City:</strong> <%=locals.user.city%></p>
+            <p><strong>Gender:</strong> <%=locals.user.gender%></p>
+            <p><strong>Hobby:</strong> <%=locals.user.hobby%></p>
+            <p><strong>Discription:</strong> <%=locals.user.discription%></p>
+            <a href="/admin/editProfile" class="button">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

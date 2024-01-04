@@ -1,0 +1,65 @@
+<%-include('header')%>
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <form action="/admin/review/editReviewData" method="post" class="form-horizontal">
+                                <input type="hidden" name="EditId" value="<%=ReviewData.id%>">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="textarea-input" class=" form-control-label">Content</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="name" value="<%=ReviewData.name%>" placeholder="Enter Name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="textarea-input" class=" form-control-label">Content</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <textarea name="content" id="textarea-input" rows="6" placeholder="Content..." class="form-control"><%=ReviewData.content%></textarea>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Contry</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="contry" placeholder="Enter Contry" value="<%=ReviewData.contry%>" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">City</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="text-input" name="city" placeholder="Enter City" value="<%=ReviewData.city%>" class="form-control">
+                                    </div>
+                                </div>
+                                <!-- <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="file-multiple-input" class=" form-control-label">Multiple File input</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="file" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file">
+                                    </div>
+                                </div> -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%-include('footer')%>

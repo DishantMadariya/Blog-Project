@@ -1,0 +1,15 @@
+const express = require('express');
+const Photo = require('../models/Photo');
+const routs = express.Router();
+const photocontroller = require('../controllers/photocontroller');
+const passport = require('passport');
+routs.get('/add_photo',passport.checkAthuntication, photocontroller.AddPhoto);
+routs.post('/insertPhotoData',passport.checkAthuntication,Photo.uploadImage,photocontroller.insertPhotoData);
+routs.get('/view_photo',passport.checkAthuntication,photocontroller.viewPhoto);
+routs.get('/isactive/:id',passport.checkAthuntication,photocontroller.isactive);
+routs.get('/deactive/:id',passport.checkAthuntication,photocontroller.deactive);
+routs.get('/updateData/:id',passport.checkAthuntication,photocontroller.updatePhotoData);
+routs.get('/deletData/:id',passport.checkAthuntication,photocontroller.deletPhotoData);
+routs.post('/editPhotoData',Photo.uploadImage,passport.checkAthuntication,photocontroller.editPhotoData);
+routs.post('/deletAll',passport.checkAthuntication,photocontroller.deletAll);
+module.exports = routs;
